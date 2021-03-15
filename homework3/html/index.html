@@ -1,0 +1,258 @@
+<html>
+
+<head>
+	<title>CS 479/679 Project</title>
+	<link href='http://fonts.googleapis.com/css?family=Nunito:300|Crimson+Text|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" title="Default" href="styles/github.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+	<link rel="stylesheet" href="highlighting/styles/default.css">
+	<script src="highlighting/highlight.pack.js"></script>
+
+	<style type="text/css">
+		body {
+			margin: 0px;
+			width: 100%;
+			font-family: 'Crimson Text', serif;
+			font-size: 20px;
+			background: #fcfcfc;
+		}
+
+		h1 {
+			font-family: 'Nunito', sans-serif;
+			font-weight: normal;
+			font-size: 28px;
+			margin: 25px 0px 0px 0px;
+			text-transform: lowercase;
+
+		}
+
+		h2 {
+			font-family: 'Nunito', sans-serif;
+			font-weight: normal;
+			font-size: 32px;
+			margin: 15px 0px 35px 0px;
+			color: #333;
+			word-spacing: 3px;
+		}
+
+		h3 {
+			font-family: 'Nunito', sans-serif;
+			font-weight: normal;
+			font-size: 26px;
+			margin: 10px 0px 10px 0px;
+			color: #333;
+			word-spacing: 2px;
+		}
+
+		h4 {
+			font-family: 'Nunito', sans-serif;
+			font-weight: normal;
+			font-size: 22px;
+			margin: 10px 0px 10px 0px;
+			color: #333;
+			word-spacing: 2px;
+		}
+
+		h5 {
+			font-family: 'Nunito', sans-serif;
+			font-weight: normal;
+			font-size: 18px;
+			margin: 10px 0px 10px 0px;
+			color: #111;
+			word-spacing: 2px;
+		}
+
+		p,
+		li {
+			color: #444;
+		}
+
+		a {
+			color: #DE3737;
+		}
+
+		.container {
+			margin: 0px auto 0px auto;
+			width: 960px;
+		}
+
+		#header {
+			background: #333;
+			width: 100%;
+		}
+
+		#headersub {
+			color: #ccc;
+			width: 960px;
+			margin: 0px auto 0px auto;
+			padding: 20px 0px 20px 0px;
+		}
+
+		.chart {
+			width: 480px;
+		}
+
+		.lol {
+			font-size: 16px;
+			color: #888;
+			font-style: italic;
+		}
+
+		.sep {
+			height: 1px;
+			width: 100%;
+			background: #999;
+			margin: 20px 0px 20px 0px;
+		}
+
+		.footer {
+			font-size: 16px;
+		}
+
+		.latex {
+			width: 100%;
+		}
+
+		.latex img {
+			display: block;
+			margin: 0px auto 0px auto;
+		}
+
+		pre {
+			font-family: 'Droid Sans Mono';
+			font-size: 14px;
+		}
+
+		td img {
+			vertical-align: middle;
+		}
+
+		#contents a {}
+	</style>
+	<script type="text/javascript">
+		hljs.initHighlightingOnLoad();
+	</script>
+</head>
+
+<body>
+	<div id="header">
+		<div id="headersub">
+			<h1>Jesse Schwartz <span style="color: #DE3737"></span></h1>
+		</div>
+	</div>
+	<div class="container">
+		<h2>CSC 476 AU / Homework 3 / Image Blending Using Pyramids</h2>
+
+		<h3><a href="https://colab.research.google.com/drive/1rljQX5JNMEXNzHGITQxnHJWWAwor4xMK?usp=sharing">Link to the Colab Notebook</a></h3>
+
+		<div style="float: right; padding: 20px">
+			<img src="placeholder.png" />
+			<p style="font-size: 14px">A fully blended image.</p>
+		</div>
+
+		<p> This project involved using fourier transformations on different wavelengths and using the laplacian and gaussian pyramids of images to compress them and to blend them with other similar images. There were six problems which we were trying to
+			solve </p>
+
+		<ol>
+			<li>Discrete and continuous signals</li>
+			<li>Complex signals</li>
+			<li>Fourier transformations of translated signals</li>
+			<li>Fourier frequency analysis</li>
+			<li>Fourier domain</li>
+			<li>Image blending</li>
+		</ol>
+
+
+		<br>
+		<h3>Discrete and continuous signals</h3>
+
+		<p> Seperating a function into it's discrete and continuous counterparts was relatively easy to do. All that is needed is to sample the variable t over a space of time and plot it as a stem plot, alongside the regular plot that comes with an equation</p>
+
+		<img src="Disc&cont.png" alt="Discrete and continuous signals">
+
+		<div style="clear:both">
+			<h3>Complex Signals</h3>
+
+			<p> seperating and graphing real and imaginary signals, or "complex" signals is also pretty easy to do in python. By taking the equation and using the .real or .imag operation, the work is essentially done for you. </p>
+
+			<img src="Real&imag.png" alt="Real and imaginary graphs">
+
+
+			<h3>Shifted Fourier Transformations</h3>
+
+			<p>After working for a while with fourier transformations of 2d images, dealing with a simple wave function like we deal with in this code was not too difficult. In this section, we simply take an equation, it's fourier transformation, and its fourier magnitude and graph it. The hard part is that we have to do that two more times for the shifted functions. The important thing to recognize with this is that while the shifted equations make the equation and the fourier transformations look different, the magnitudes of the fourier transformations always remains the same, regardless of the shift.</p>
+
+			<img src="Shifts.png" alt="shifted equations and fourier transformation">
+
+
+			<h3>Fourier frequency analysis</h3>
+
+			<p>Of all the sections, I am least sure of my work in this section. The goal was to "Plot the Fourier transform of the following function for frequency below 50hz." I tried my best, but I am not totally sure if I got it all right.</p>
+
+			<img src="frequencyEq.png" alt="Equation">
+			<img src="frequencyF.png" alt="Fourier">
+			<img src="frequency50.png" alt="<50">
+
+
+
+			<h3>Fourier transformations</h3>
+
+			<p>Using the fourier and the real domains, this sections was all about recreating specific patterns in the real domain by placing white dots on a black background in the fourier domain. While we have gone over this in class a bit, actually placing the dots definitely helped to nail down to the concepts which we have been learning. It also helped me with my python array navigation, since I am still not great at that.</p>
+
+			<img src="FFT's.png" alt="Real and Fourier Domain transformations">
+
+
+			<h2>Image Blending and Pyramids</h2>
+				<p>
+					Laplacian and Gaussian pyramids are an essential aspect of image storage, because they are able to reduce the amount of data that needs to be stored in order to get a full resolution image. They are also really helpful for combining images. Starting off, I'll explaing how I created my pyramids. Starting with a full sized image, that image is blurred, and then every other pixel is taken away. The Laplacian is the difference between the blurred image and the original. This is done multiple times until the image can no longer be shrunk anymore. A complete image pyramid looks like this:
+				</p>
+
+				<img src="ApplePyramid.png" alt="ApplePyramid">
+				<img src="AppleLap.png" alt="Apply Laplace">
+
+				<p>The image on the left represents the blurred and shrunken images, while the pyramid on the right represents the Laplacians, or the differences the each blurring creates. When we enlarge a Gaussian in the same way we shrink it and add it's Laplacian back in, it will look similar to the original image. This is how we can store images effectively.
+<br> <br>
+
+				This can also be used to blend multiple images together. By creating a mask and only allowing an image to repopulate one half of the image and having a seperate photo fill the other, we can create a gradient from one image to the other. An important aspect of the pyramid is that it also has to be blurred, otherwise there will be no gradient. This means that we have to have multiple different pyramids, 2 Laplacians (one for each photo), and 1 Gaussian (for the Mask). Once all of those have been built, they can be combined something like this to create the blending that you see below:
+				</p>
+
+
+			<pre><code>
+%example code
+for i in range(len(AppleLaplacian)):
+  blended= interpolate(blended)
+  blended += (AppleLaplacian[i] * (MaskGaussian[i])) + (OrangeLaplacian[i] * (255-MaskGaussian[i]))
+
+</code></pre>
+
+			<h3>Image blending with laplacian and gaussian pyramids:</h3>
+
+			<table border=1>
+				<tr>
+					<td>
+						<img src="Blend1.png" width="24%" />
+						<img src="Blend2.png" width="24%" />
+						<img src="Blend3.png" width="24%" />
+						<img src="Blend4.png" width="24%" />
+					</td>
+				</tr>
+
+				<tr>
+					<td>
+						<img src="Blend5.png" width="24%" />
+						<img src="Blend6.png" width="24%" />
+						<img src="Blend7.png" width="24%" />
+						<img src="placeholder.png" width="24%" />
+					</td>
+				</tr>
+
+			</table>
+
+			<div style="clear:both">
+				<br><br>
+				<p> Overall, this homework took me a while to finish, although I spent a decent amount of time trying to figure out how to work with color images or move images from B&W into color. In the end, I decided it was more worth my time to have solutions to everything rather than have the perfect solutions to some problems. I also spent a decent amount of time trying to figure out how the code that you was given to us works, but once I found out how to work with that it wasn't too hard to complete the image blending (which took me the most time by a significant margin). Not everything came out perfect, but I do think that most of it came out good enough.</p>
+			</div>
+</body>
+
+</html>
