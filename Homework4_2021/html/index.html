@@ -1,0 +1,196 @@
+<html>
+<head>
+<title>CS 479/679 Project</title>
+<link href='http://fonts.googleapis.com/css?family=Nunito:300|Crimson+Text|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" title="Default" href="styles/github.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+<link rel="stylesheet" href="highlighting/styles/default.css">
+<script src="highlighting/highlight.pack.js"></script>
+
+<style type="text/css">
+body {
+	margin: 0px;
+	width: 100%;
+	font-family: 'Crimson Text', serif;
+	font-size: 20px;
+	background: #fcfcfc;
+}
+h1 {
+	font-family: 'Nunito', sans-serif;
+	font-weight: normal;
+	font-size: 28px;
+	margin: 25px 0px 0px 0px;
+	text-transform: lowercase;
+
+}
+
+h2 {
+	font-family: 'Nunito', sans-serif;
+	font-weight: normal;
+	font-size: 32px;
+	margin: 15px 0px 35px 0px;
+	color: #333;
+	word-spacing: 3px;
+}
+
+h3 {
+	font-family: 'Nunito', sans-serif;
+	font-weight: normal;
+	font-size: 26px;
+	margin: 10px 0px 10px 0px;
+	color: #333;
+	word-spacing: 2px;
+}
+h4 {
+	font-family: 'Nunito', sans-serif;
+	font-weight: normal;
+	font-size: 22px;
+	margin: 10px 0px 10px 0px;
+	color: #333;
+	word-spacing: 2px;
+}
+
+h5 {
+	font-family: 'Nunito', sans-serif;
+	font-weight: normal;
+	font-size: 18px;
+	margin: 10px 0px 10px 0px;
+	color: #111;
+	word-spacing: 2px;
+}
+
+p, li {
+	color: #444;
+}
+
+a {
+	color: #DE3737;
+}
+
+.container {
+	margin: 0px auto 0px auto;
+	width: 960px;
+}
+
+#header {
+	background: #333;
+	width: 100%;
+}
+
+#headersub {
+	color: #ccc;
+	width: 960px;
+	margin: 0px auto 0px auto;
+	padding: 20px 0px 20px 0px;
+}
+
+.chart {
+	width: 480px;
+}
+.lol {
+	font-size: 16px;
+	color: #888;
+	font-style: italic;
+}
+.sep {
+	height: 1px;
+	width: 100%;
+	background: #999;
+	margin: 20px 0px 20px 0px;
+}
+.footer{
+	font-size: 16px;
+}
+.latex {
+	width: 100%;
+}
+
+.latex img {
+	display: block;
+	margin: 0px auto 0px auto;
+}
+
+pre {
+	font-family: 'Droid Sans Mono';
+	font-size: 14px;
+}
+
+td img {
+  vertical-align: middle;
+}
+
+#contents a {
+}
+</style>
+<script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+</script>
+</head>
+<body>
+<div id="header" >
+<div id="headersub">
+<h1>Jesse Schwartz <span style="color: #DE3737"></span></h1>
+</div>
+</div>
+<div class="container">
+<h2>CSC 476/676 AU / Homework 4 / Motion Magnification</h2>
+
+<div style="float: right; padding: 20px">
+<img src="Mag-phase.png" />
+<p style="font-size: 14px">Motion Magnification</M>.</p>
+</div>
+
+<p> 	The goal of this homework was to use computer vision processes to take an image and/or video (which is really just a bunch of images) and magnify any motion that is happening between the images.</p>
+
+<ol>
+<li>Space-time slices.</li>
+<li>Spatial-temporal Gaussians.</li>
+<li>Motion Magnification</li>
+<li>Motion Magnification in Videos</li>
+</ol>
+
+<h1>Space Time Slices</h1>
+
+<p>A space time slice of a video is essentially taking the pixels at row or column x at every frame throughout the image. This will show you, over the course of a single image, how the pixels in a specific row/column changed throughout the duration of the entire video. With a long video, this slice can get very big, but we were working with short videos.</p>
+
+<img src="Vid-slice.png" alt="Video slice">
+
+<p>This video slice which shows the progression of pixels from row 120 of the Bill.avi file shows that there is not much movement.</p>
+
+<div style="clear:both">
+<h3>Spatial-temporal Gaussians</h3>
+
+<p>All things considered, I was not able to get my code for this section to work. That being said, I still understand how these filters are supposed to work and what the purpose of them is.
+	<br><br>
+
+A spatial-temporal filter works across an entire video file, and essentially acts as a gaussian filter, but only for things moving in a certain direction. This can essentially create a blur only around object moving at a specific velocity. It is most apparent when viewed through a video slice like above, because the slice capture how fast something moves across the frame. Only objects moving at the certain velocity defined by the gaussian filter will be sharp, the rest of the image will be blurred.</p>
+
+<h1>Motion Magnification</h1>
+
+<p> Using the phases of images, it was possible to notice how pixels change from image to image and then magnify that change so it is more visible. In our examples the images had very few pixels so many of the changes are immediately apparent, but that will not always be the case.</p>
+
+<img src="Mag-phase.png" alt="phase magnification">
+
+<p>While this worked with simple images that only have one change, it did not work for more complex images with changes in multiple directions. I'm pretty sure this is because or algorithm cannot determine which pixel did which movement.</p>
+
+<img src="Mag-2phase.png" alt="phase magnification, bad example">
+
+
+<p>Here is where I got a little confused and mostly where I stopped being able to make progress. The next step is to reduce the images into smaller chunks in order to increase the likelihood that change only happens in one direction in any given chunk, allowing our original formula to work. I am missing something about how the code is supposed to work in this section which caused my reult to be wildy incorrect.</p>
+
+<img src="Mag-wrong.png" alt="I didn't get this one">
+
+<p>It really pains me to turn something in looking like this... I wish I had more time to try and figure out what I need to do, but I just did not have that kind of time this week :(</p>
+
+
+
+<h1>Motion Magnification in Videos</h1>
+
+<div style="clear:both" >
+<p> 	Unfortunately due to the same reasons that I couldn't get my earlier code in spatial-temporal gaussians and windowed image magnification to work, this also did not work for me. I'm not happy about this, but I made a judgement decision about how much time I had put into this, and how much time I needed to put into other assignment this week and my other assignments won. I would really like to come back to this because I am a double major in Film and CS, so this seems like a really cool way to mesh my passions together. This week was just not the week for me to do it.</p>
+
+<p>I know it seems like I didn't get much done on this HW, but I really did put in all the time and effort I could. I'll come back to it as soon as I can because I hate leaving assignments unfinished like this.</p>
+</div>
+</body>
+</html>
